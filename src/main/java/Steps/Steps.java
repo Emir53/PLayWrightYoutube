@@ -3,6 +3,7 @@ package Steps;
 import Pages.CartPage;
 import Pages.HomePage;
 import Pages.LoginPage;
+import Pages.ProductsPage;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
@@ -17,6 +18,7 @@ public class Steps {
     LoginPage loginPage;
     HomePage homePage;
     CartPage cartPage;
+    ProductsPage productsPage;
     Playwright playwright=Playwright.create();
     Browser browser =playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(300));
 
@@ -27,6 +29,7 @@ public class Steps {
         homePage=new HomePage(page);
         loginPage=new LoginPage(page);
         cartPage=new CartPage(page);
+        productsPage=new ProductsPage(page);
 
     }
     @And("CLicked On Login")
@@ -54,7 +57,7 @@ public class Steps {
         loginPage.checkıfGetErrorMessage();
 
     }
-
+/////////////////////////
     @Given("I Clicked View product")
     public void viewFirstProduct(){
         homePage.viewFirstProduct();
@@ -92,5 +95,27 @@ public class Steps {
         cartPage.assertİfProductRemoved();
     }
 
+    ///////////////////////////
+    @Given("I clicked on Products button")
+    public void clickedOnProductsBtn(){
+        homePage.goToProductsPage();
 
+    }
+
+
+
+    @And("I searched for product {string}")
+    public void ıSearchedForProduct(String arg0) {
+        productsPage.typeİnSearchBox(arg0);
+    }
+
+    @When("I click on Search Button")
+    public void ıClickOnSearchButton() {
+        productsPage.clickOnSearchBoxButton();
+    }
+
+    @Then("I check İf Expected visible {string}")
+    public void ıCheckIfExpectedVisible(String arg0) {
+        productsPage.assertİfProductVisible(arg0);
+    }
 }
