@@ -1,19 +1,22 @@
 package Steps;
 
+import Pages.CartPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LoginSteps {
+public class Steps {
     LoginPage loginPage;
     HomePage homePage;
+    CartPage cartPage;
     Playwright playwright=Playwright.create();
     Browser browser =playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(300));
 
@@ -23,6 +26,7 @@ public class LoginSteps {
         page.navigate("https://automationexercise.com/");
         homePage=new HomePage(page);
         loginPage=new LoginPage(page);
+        cartPage=new CartPage(page);
 
     }
     @And("CLicked On Login")
@@ -50,4 +54,43 @@ public class LoginSteps {
         loginPage.checkıfGetErrorMessage();
 
     }
+
+    @Given("I Clicked View product")
+    public void viewFirstProduct(){
+        homePage.viewFirstProduct();
+    }
+
+    @And("I proceed to Checkout")
+    public void proceed(){
+        cartPage.proceedToCheckOut();
+    }
+
+
+    @And("I added product on my cart")
+    public void ıAddedProductOnMyCart() {
+        cartPage.addProductOnCartAndViewCart();
+    }
+
+    @When("I Enter The Cart İnformations {string} {string}  {string}  {string} {string}")
+    public void ıEnterTheCartİnformations(String arg0, String arg1, String arg2, String arg3, String arg4) {
+
+        cartPage.EnterCartİnfos(arg0, arg1, arg2, arg3, arg4);
+    }
+
+    @Then("I complete Order Then check if order created")
+    public void completeOrderAndCheck(){
+        cartPage.completePaymentThenCheck();
+        cartPage.assertİfOrderCreated();
+
+    }
+    @When("I remove order from cart")
+    public void removeOrderFromCart(){
+        cartPage.removeProdcutFromCart();
+    }
+    @Then("I should see if product removed")
+    public void assertİfProductRemoved(){
+        cartPage.assertİfProductRemoved();
+    }
+
+
 }

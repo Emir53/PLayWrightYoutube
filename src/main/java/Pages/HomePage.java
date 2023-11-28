@@ -10,8 +10,14 @@ public class HomePage {
 
     private String loginBtnOnHomePage="//a[contains(.,'Signup / Login')]";
 
+    private String viewFirstProduct="(//i[@class='fa fa-plus-square'])[1]";
+
     public void goToLoginPage(){
         page.click(loginBtnOnHomePage);
+    }
+
+    public void viewFirstProduct(){
+        page.click(viewFirstProduct);
     }
 
 
