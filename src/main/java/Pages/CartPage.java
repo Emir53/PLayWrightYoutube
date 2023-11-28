@@ -69,18 +69,3 @@ public class CartPage {
 
 
 
-/*
-   page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Place Order")).click();
-           page.locator("input[name=\"name_on_card\"]").click();
-           page.locator("input[name=\"name_on_card\"]").fill("emir");
-           page.locator("input[name=\"card_number\"]").click();
-           page.locator("input[name=\"card_number\"]").fill("12345");
-           page.getByPlaceholder("ex.").click();
-           page.getByPlaceholder("ex.").fill("123");
-           page.getByPlaceholder("MM").click();
-           page.getByPlaceholder("MM").fill("12");
-           page.getByPlaceholder("YYYY").click();
-           page.getByPlaceholder("YYYY").fill("1999");
-           page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Pay and Confirm Order")).click();
-
- */
